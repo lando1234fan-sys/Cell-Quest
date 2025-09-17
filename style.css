@@ -1,0 +1,189 @@
+/* Reset & Background */
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  background: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Galaxy layers */
+.galaxy, .twinkles, .shooting-stars {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+
+.galaxy {
+  background: url("NGC_4414_(NASA-med).jpg") no-repeat center center;
+  background-size: cover;
+  animation: driftZoom 40s infinite alternate ease-in-out;
+  z-index: 0;
+}
+
+@keyframes driftZoom {
+  0% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.08) translate(-8px, -8px); }
+  100% { transform: scale(1) translate(8px, 8px); }
+}
+
+/* Quiz UI */
+.quiz-container {
+  position: relative;
+  z-index: 10;
+  width: 80%;
+  max-width: 500px;
+  margin: 10% auto;
+  padding: 20px;
+  background: rgba(0, 0, 30, 0.85);
+  border: 2px solid #0ff;
+  border-radius: 12px;
+  box-shadow: 0 0 25px #0ff, 0 0 50px rgba(0, 255, 255, 0.6);
+  text-align: center;
+  color: #fff;
+}
+
+.quiz-container h2 {
+  margin-bottom: 20px;
+}
+
+.answer-btn {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  font-size: 16px;
+  color: #fff;
+  background: rgba(0, 255, 255, 0.1);
+  border: 2px solid #0ff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+}
+
+.answer-btn:hover {
+  background: rgba(0, 255, 255, 0.3);
+}
+
+.answer-btn.correct {
+  background: rgba(0, 255, 0, 0.5);
+  border-color: lime;
+  box-shadow: 0 0 15px lime;
+}
+
+.answer-btn.wrong {
+  background: rgba(255, 0, 0, 0.5);
+  border-color: red;
+  box-shadow: 0 0 15px red;
+}
+
+.next-btn, .scoreboard-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background: #0ff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #000;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.next-btn:hover, .scoreboard-btn:hover {
+  background: #00cccc;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Scoreboard Modal */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 30, 0.95);
+  border: 2px solid #0ff;
+  border-radius: 12px;
+  box-shadow: 0 0 25px #0ff, 0 0 50px rgba(0, 255, 255, 0.6);
+  width: 80%;
+  max-width: 500px;
+  padding: 20px;
+  z-index: 20;
+  text-align: center;
+  color: #fff;
+}
+
+.modal h2 {
+  margin-bottom: 15px;
+}
+
+.modal ul {
+  list-style: none;
+  padding: 0;
+}
+
+.modal ul li {
+  margin: 5px 0;
+}
+
+.close-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background: #0ff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #000;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.close-btn:hover {
+  background: #00cccc;
+}
+
+
+.clear-btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background: #f33;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.clear-btn:hover {
+  background: #c00;
+}
+
+
+/* Progress Bar */
+.progress-container {
+  margin-top: 20px;
+  width: 100%;
+  background: rgba(0, 255, 255, 0.1);
+  border: 2px solid #0ff;
+  border-radius: 8px;
+  height: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: #0ff;
+  box-shadow: 0 0 15px #0ff;
+  transition: width 0.5s ease;
+}
