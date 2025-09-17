@@ -1,0 +1,108 @@
+/* style.css - updated z-index ordering and improvements */
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  background: black;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* Galaxy background (base layer) */
+.galaxy {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: url("NGC_4414_(NASA-med).jpg") no-repeat center center;
+  background-size: cover;
+  animation: driftZoom 40s infinite alternate ease-in-out;
+  z-index: 0; /* base */
+  pointer-events: none;
+}
+
+/* Twinkling star layers (parallax layers) */
+.twinkles {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.layer1 { z-index: 1; } /* closest (moves fastest) */
+.layer2 { z-index: 1; } /* mid */
+.layer3 { z-index: 2; } /* far (moves slowest) */
+
+.twinkle {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  opacity: 0.5;
+  animation: twinkle 2s infinite ease-in-out alternate, driftStar linear infinite;
+  will-change: transform, opacity;
+}
+
+/* Shooting stars (top layer) */
+.shooting-stars {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.star {
+  position: absolute;
+  opacity: 0;
+  transform: rotate(45deg);
+  background: linear-gradient(-45deg, white, rgba(255,255,255,0));
+  animation: shooting 3s linear forwards;
+  will-change: transform, opacity;
+}
+
+/* Animations */
+@keyframes driftZoom {
+  0% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.08) translate(-8px, -8px); }
+  100% { transform: scale(1) translate(8px, 8px); }
+}
+
+@keyframes twinkle {
+  from { opacity: 0.2; }
+  to { opacity: 1; }
+}
+
+@keyframes shooting {
+  0% {
+    opacity: 0;
+    transform: translateX(0) translateY(0) rotate(45deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-1000px) translateY(1000px) rotate(45deg);
+  }
+}
+
+@keyframes driftStar {
+  from { transform: translate(0, 0); }
+  to { transform: translate(20px, 20px); }
+}
+
+/* Small helper for the troubleshooting overlay message */
+.debug-msg {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  padding: 8px 12px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border-radius: 6px;
+  font-size: 13px;
+  z-index: 9999;
+  pointer-events: auto;
+}
