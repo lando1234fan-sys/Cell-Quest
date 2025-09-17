@@ -1,0 +1,65 @@
+[
+  {
+    "question": "What is the chemical symbol for water?",
+    "answers": [
+      {
+        "text": "H2O",
+        "correct": true
+      },
+      {
+        "text": "O2",
+        "correct": false
+      },
+      {
+        "text": "CO2",
+        "correct": false
+      },
+      {
+        "text": "HO2",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "Which organelle is responsible for photosynthesis in plant cells?",
+    "answers": [
+      {
+        "text": "Chloroplast",
+        "correct": true
+      },
+      {
+        "text": "Mitochondria",
+        "correct": false
+      },
+      {
+        "text": "Ribosome",
+        "correct": false
+      },
+      {
+        "text": "Nucleus",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "question": "What type of macromolecule are enzymes?",
+    "answers": [
+      {
+        "text": "Proteins",
+        "correct": true
+      },
+      {
+        "text": "Lipids",
+        "correct": false
+      },
+      {
+        "text": "Carbohydrates",
+        "correct": false
+      },
+      {
+        "text": "Nucleic acids",
+        "correct": false
+      }
+    ]
+  }
+]
