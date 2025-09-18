@@ -1,6 +1,0 @@
-1. Q1: Sample question
-   - Correct (correct)
-   - Wrong1
-   - Wrong2
-   - Wrong3
-
