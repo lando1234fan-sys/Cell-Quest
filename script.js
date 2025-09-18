@@ -1,0 +1,1 @@
+console.log('Galaxy Quiz loaded');
