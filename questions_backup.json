@@ -1,0 +1,27 @@
+{
+  "last_updated": "2025-09-17T00:00:00Z",
+  "questions_count": 3,
+  "questions": [
+    {
+      "question": "Q1: Sample question",
+      "answers": [
+        {
+          "text": "Correct",
+          "correct": true
+        },
+        {
+          "text": "Wrong1",
+          "correct": false
+        },
+        {
+          "text": "Wrong2",
+          "correct": false
+        },
+        {
+          "text": "Wrong3",
+          "correct": false
+        }
+      ]
+    }
+  ]
+}
