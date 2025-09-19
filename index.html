@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head><title>Quiz Game</title></head>
+<body>
+<button id="open-question-editor" class="btn">Open Question Editor</button>
+
+<video id="bg-video"></video>
+<audio id="music-audio"></audio>
+<button id="music-toggle"></button>
+<script>
+// main quiz js would be here
+</script>
+<script id="embedded-questions" type="text/plain">
+W3sicXVlc3Rpb24iOiAiSG9ub3JzIEJpb2xvZ3kgQ2hhcHRlciAzIFRlc3QgUmV2aWV3IiwgIm9wdGlvbnMiOiBbIkEiLCAiQiIsICJDIiwgIkQiXSwgImFuc3dlciI6IDB9LCB7InF1ZXN0aW9uIjogIldoYXQgaXMgaW4gYSBoeWRyb3h5bCBncm91cD8iLCAib3B0aW9ucyI6IFsiQSIsICJCIiwgIkMiLCAiRCJdLCAiYW5zd2VyIjogMH0sIHsicXVlc3Rpb24iOiAiV2hhdCBpcyBsYWN0b3NlIGludG9sZXJhbmNlPyIsICJvcHRpb25zIjogWyJBIiwgIkIiLCAiQyIsICJEIl0sICJhbnN3ZXIiOiAwfSwgeyJxdWVzdGlvbiI6ICJXaGF0IGlzIGFuIGlzb21lcj8iLCAib3B0aW9ucyI6IFsiQSIsICJCIiwgIkMiLCAiRCJdLCAiYW5zd2VyIjogMH0sIHsicXVlc3Rpb24iOiAiV2hhdCBhcmUgcGVvcGxlIHRoYXQgYXJlIGxhY3Rvc2UgaW50b2xlcmFudCB1bmFibGUgdG8gZG8/IiwgIm9wdGlvbnMiOiBbIkEiLCAiQiIsICJDIiwgIkQiXSwgImFuc3dlciI6IDB9LCB7InF1ZXN0aW9uIjogIlRydWUgb3IgZmFsc2Ug4oCTIGh5ZHJvY2FyYm9ucyBhcmUgYW4gb3JnYW5pYyBjb21wb3VuZCIsICJvcHRpb25zIjogWyJBIiwgIkIiLCAiQyIsICJEIl0sICJhbnN3ZXIiOiAwfSwgeyJxdWVzdGlvbiI6ICJXaGF0IGRvIGFsbCBvcmdhbmljIGNvbXBvdW5kcyBjb250YWluPyIsICJvcHRpb25zIjogWyJBIiwgIkIiLCAiQyIsICJEIl0sICJhbnN3ZXIiOiAwfSwgeyJxdWVzdGlvbiI6ICJXaHkgaXMgY2FyYm9uIHN1Y2ggYW4gaW1wb3J0YW50IG1vbGVjdWxlPyIsICJvcHRpb25zIjogWyJBIiwgIkIiLCAiQyIsICJEIl0sICJhbnN3ZXIiOiAwfSwgeyJxdWVzdGlvbiI6ICJXaGF0IGlzIGluIGEgY2FyYm94eWwgZ3JvdXA/IiwgIm9wdGlvbnMiOiBbIkEiLCAiQiIsICJDIiwgIkQiXSwgImFuc3dlciI6IDB9LCB7InF1ZXN0aW9uIjogIldoYXQgZG9lcyBhbiBlbnp5bWUgZG8/IiwgIm9wdGlvbnMiOiBbIkEiLCAiQiIsICJDIiwgIkQiXSwgImFuc3dlciI6IDB9LCB7InF1ZXN0aW9uIjogIldoYXQgZnVuY3Rpb25hbCBncm91cCBpcyBjYXBhYmxlIG9mIHJlZ3VsYXRpbmcgZ2VuZSBleHByZXNzaW9uPyIsICJvcHRpb25zIjogWyJBIiwgIkIiLCAiQyIsICJEIl0sICJhbnN3ZXIiOiAwfSwgeyJxdWVzdGlvbiI6ICJXaGF0IG1vbGVjdWxlIGNvbnRhaW5zIGEgY2FyYm94eWwgYW5kIGFuIGFtaW5vIGdyb3VwPyIsICJvcHRpb25zIjogWyJBIiwgIkIiLCAiQyIsICJEIl0sICJhbnN3ZXIiOiAwfSwgeyJxdWVzdGlvbiI6ICJXaGF0IGNhbiB0aGUgcmVzdWx0cyBvZiBhIGRlaHlkcmF0aW9uIHJlYWN0aW9uIGJlIHJldmVyc2VkIGJ5PyIsICJvcHRpb25zIjogWyJBIiwgIkIiLCAiQyIsICJEIl0sICJhbnN3ZXIiOiAwfSwgeyJxdWVzdGlvbiI6ICJIb3cgYXJlIG1vbm9tZXJzIGFuZCBqb2luZWQgdG9nZXRoZXIgdG8gY3JlYXRlIHBvbHltZXJzPyIsICJvcHRpb25zIjogWyJBIiwgIkIiLCAiQyIsICJEIl0sICJhbnN3ZXIiOiAwfSwgeyJxdWVzdGlvbiI6ICJXaHkgd291bGQgYSBkaWV0IGhpZ2ggaW4gcmVkIG1lYXQgKGFuaW1hbCBwcm9kdWN0cykgYW5kIGh5ZHJvZ2VuYXRlZCB2ZWdldGFibGUgb2lsIGluY3JlYXNlIHRoZSByaXNrIGZvciBoZWFydCBkaXNlYXNlPyIsICJvcHRpb25zIjogWyJBIiwgIkIiLCAiQyIsICJEIl0sICJhbnN3ZXIiOiAwfSwgeyJxdWVzdGlvbiI6ICJXaGF0IGlzIHRoZSBtb2xlY3VsYXIgZm9ybXVsYSBvZiBtb3N0IG1vbm9zYWNjaGFyaWRlcz8iLCAib3B0aW9ucyI6IFsiQSIsICJCIiwgIkMiLCAiRCJdLCAiYW5zd2VyIjogMH0sIHsicXVlc3Rpb24iOiAiSG93IGRvZXMgYSBkaXNhY2NoYXJpZGUgZm9ybT8iLCAib3B0aW9ucyI6IFsiQSIsICJCIiwgIkMiLCAiRCJdLCAiYW5zd2VyIjogMH0sIHsicXVlc3Rpb24iOiAiQzEwMEgyMDBPMTAwIHdvdWxkIG1vc3QgbGlrZWx5IGJlIHdoYXQgbWFjcm9tb2xlY3VsZT8iLCAib3B0aW9ucyI6IFsiQSIsICJCIiwgIkMiLCAiRCJdLCAiYW5zd2VyIjogMH0sIHsicXVlc3Rpb24iOiAiSG93IGFyZSBjYXJib2h5ZHJhdGVzIHN0b3JlZCBpbiBhbmltYWxzPyBJbiBwbGFudHM/IiwgIm9wdGlvbnMiOiBbIkEiLCAiQiIsICJDIiwgIkQiXSwgImFuc3dlciI6IDB9LCB7InF1ZXN0aW9uIjogIldoYXQgc3VmZml4IGRvIG1vc3Qgc3VnYXJzIGVuZCBpbj8iLCAib3B0aW9ucyI6IFsiQSIsICJCIiwgIkMiLCAiRCJdLCAiYW5zd2VyIjogMH0sIHsicXVlc3Rpb24iOiAiV2hhdCBhcmUgdGhlIG1ham9yIHBvbHlzYWNjaGFyaWRlcz8iLCAib3B0aW9ucyI6IFsiQSIsICJCIiwgIkMiLCAiRCJdLCAiYW5zd2VyIjogMH0sIHsicXVlc3Rpb24iOiAiV2hhdCBhcmUgZmF0dHkgYWNpZHMgd2l0aCBkb3VibGUgYm9uZHMga25vd24gYXM/IiwgIm9wdGlvbnMiOiBbIkEiLCAiQiIsICJDIiwgIkQiXSwgImFuc3dlciI6IDB9LCB7InF1ZXN0aW9uIjogIldoYXQgbWFrZXMgZmF0cyBoeWRyb3Bob2JpYz8iLCAib3B0aW9ucyI6IFsiQSIsICJCIiwgIkMiLCAiRCJdLCAiYW5zd2VyIjogMH0sIHsicXVlc3Rpb24iOiAiV2hhdCBpcyB0aGUgbWFqb3IgbGlwaWQgZm91bmQgaW4gY2VsbCBtZW1icmFuZXM/IiwgIm9wdGlvbnMiOiBbIkEiLCAiQiIsICJDIiwgIkQiXSwgImFuc3dlciI6IDB9LCB7InF1ZXN0aW9uIjogIldoYXQgYXJlIGZhdHR5IGFjaWRzIG1hZGUgb2YgY2hlbWljYWxseT8iLCAib3B0aW9ucyI6IFsiQSIsICJCIiwgIkMiLCAiRCJdLCAiYW5zd2VyIjogMH0sIHsicXVlc3Rpb24iOiAiV2hhdCBwZXJmb3JtYW5jZSBlbmhhbmNpbmcgc3Vic3RhbmNlIGlzIG1hZGUgb2YgbGlwaWRzPyIsICJvcHRpb25zIjogWyJBIiwgIkIiLCAiQyIsICJEIl0sICJhbnN3ZXIiOiAwfSwgeyJxdWVzdGlvbiI6ICJXb3VsZCB5b3UgdXNlIGEgdW5hbHRlcmVkIG9yIGh5ZHJvZ2VuYXRlZCBvbGl2ZSBvaWwgd291bGQgeW91IHVzZSB0byBsb3dlciB5b3VyIHJpc2sgb2YgaGVhcnQgZGlzZWFzZT8iLCAib3B0aW9ucyI6IFsiQSIsICJCIiwgIkMiLCAiRCJdLCAiYW5zd2VyIjogMH0sIHsicXVlc3Rpb24iOiAiV2hhdCBpcyBhIHRyaWdseWNlcmlkZSBtYWRlIG9mPyAgQXJlIHRoZXkgaHlkcm9waGlsaWMgb3IgaHlkcm9waG9iaWM/IiwgIm9wdGlvbnMiOiBbIkEiLCAiQiIsICJDIiwgIkQiXSwgImFuc3dlciI6IDB9LCB7InF1ZXN0aW9uIjogIldoYXQgYXJlIHBlcHRpZGUgYm9uZHM/IiwgIm9wdGlvbnMiOiBbIkEiLCAiQiIsICJDIiwgIkQiXSwgImFuc3dlciI6IDB9LCB7InF1ZXN0aW9uIjogIlRydWUgb3IgZmFsc2U6IFN0ZXJvaWRzIGluY3JlYXNlIGJvbmUgZ3Jvd3RoIiwgIm9wdGlvbnMiOiBbIkEiLCAiQiIsICJDIiwgIkQiXSwgImFuc3dlciI6IDB9LCB7InF1ZXN0aW9uIjogIldoYXQgaXMgdGhlIHByaW1hcnkgc3RydWN0dXJlIG9mIGEgcHJvdGVpbj8iLCAib3B0aW9ucyI6IFsiQSIsICJCIiwgIkMiLCAiRCJdLCAiYW5zd2VyIjogMH0sIHsicXVlc3Rpb24iOiAiSG93IGFyZSBhbWlubyBhY2lkcyBkaXN0aW5ndWlzaGVkIGZyb20gb25lIGFub3RoZXI/IiwgIm9wdGlvbnMiOiBbIkEiLCAiQiIsICJDIiwgIkQiXSwgImFuc3dlciI6IDB9LCB7InF1ZXN0aW9uIjogIldoYXQgaGFwcGVucyB3aGVuIGEgcHJvdGVpbiBiZWNvbWVzIGRlbmF0dXJlZD8iLCAib3B0aW9ucyI6IFsiQSIsICJCIiwgIkMiLCAiRCJdLCAiYW5zd2VyIjogMH0sIHsicXVlc3Rpb24iOiAiV2hhdCBpcyB0aGUgYnVpbGRpbmcgYmxvY2sgb2YgYSBwcm90ZWluPyIsICJvcHRpb25zIjogWyJBIiwgIkIiLCAiQyIsICJEIl0sICJhbnN3ZXIiOiAwfSwgeyJxdWVzdGlvbiI6ICJIb3cgYXJlIHByb3RlaW5zIGRpZmZlcmVudCBmcm9tIG9uZSBhbm90aGVyPyIsICJvcHRpb25zIjogWyJBIiwgIkIiLCAiQyIsICJEIl0sICJhbnN3ZXIiOiAwfSwgeyJxdWVzdGlvbiI6ICJXaGF0IGlzIHRoZSBETkEgc2VxdWVuY2UgY29tcGxlbWVudGFyeSB0byBUQ0dBQUFUVEdDQUE/IiwgIm9wdGlvbnMiOiBbIkEiLCAiQiIsICJDIiwgIkQiXSwgImFuc3dlciI6IDB9LCB7InF1ZXN0aW9uIjogIldoYXQgaXMgYSBzZWNvbmRhcnkgc3RydWN0dXJlIHByb3RlaW4/IiwgIm9wdGlvbnMiOiBbIkEiLCAiQiIsICJDIiwgIkQiXSwgImFuc3dlciI6IDB9LCB7InF1ZXN0aW9uIjogIldoYXQgaXMgYSB0ZXJ0aWFyeSBzdHJ1Y3R1cmUgb2YgYSBwb2x5cGVwdGlkZSByZWZlciB0bz8iLCAib3B0aW9ucyI6IFsiQSIsICJCIiwgIkMiLCAiRCJdLCAiYW5zd2VyIjogMH0sIHsicXVlc3Rpb24iOiAiSG93IGFyZSBnZW5lcyB1c2VkIGJ5IGNlbGxzIHRvIGJ1aWxkIHByb3RlaW5zPyIsICJvcHRpb25zIjogWyJBIiwgIkIiLCAiQyIsICJEIl0sICJhbnN3ZXIiOiAwfSwgeyJxdWVzdGlvbiI6ICJIb3cgZG9lcyBETkEgYW5kIG51Y2xlb3RpZGVzIHdvcmsgdG8gY3JlYXRlIHBvbHltZXJzIG91dCBvZiBtb25vbWVycz8iLCAib3B0aW9ucyI6IFsiQSIsICJCIiwgIkMiLCAiRCJdLCAiYW5zd2VyIjogMH0sIHsicXVlc3Rpb24iOiAiSG93IGRvZXMgRE5BIGRpZmZlciBmcm9tIFJOQT8iLCAib3B0aW9ucyI6IFsiQSIsICJCIiwgIkMiLCAiRCJdLCAiYW5zd2VyIjogMH0sIHsicXVlc3Rpb24iOiAiV2hhdCBkb2VzIGEgbnVjbGVvdGlkZSBjb250YWluPyIsICJvcHRpb25zIjogWyJBIiwgIkIiLCAiQyIsICJEIl0sICJhbnN3ZXIiOiAwfSwgeyJxdWVzdGlvbiI6ICJXaGF0IGlzIHRoZSBmbG93IG9mIGluZm9ybWF0aW9uIGluIGdlbmUgZXhwcmVzc2lvbj8iLCAib3B0aW9ucyI6IFsiQSIsICJCIiwgIkMiLCAiRCJdLCAiYW5zd2VyIjogMH0sIHsicXVlc3Rpb24iOiAiV2hhdCBpcyB0aGUgZGlmZmVyZW5jZSBpbiB0aGVzZSB0d28gc3RydWN0dXJhbCBpc29tZXJzPyIsICJvcHRpb25zIjogWyJBIiwgIkIiLCAiQyIsICJEIl0sICJhbnN3ZXIiOiAwfSwgeyJxdWVzdGlvbiI6ICJUaGVzZSB0d28gbW9sZWN1bGVzIGFyZSBzdHJ1Y3R1cmFsIGlzb21lcnMuIFdoYXQgaXMgdGhlIGRpZmZlcmVuY2UgYmV0d2VlbiB0aGVtPyIsICJvcHRpb25zIjogWyJBIiwgIkIiLCAiQyIsICJEIl0sICJhbnN3ZXIiOiAwfSwgeyJxdWVzdGlvbiI6ICJXaHkgY2Fu4oCZdCBhIHBlcnNvbiB3aG8gaXMgbGFjdG9zZSBpbnRvbGVyYW50IGRpZ2VzdCBhIGdsYXNzIG9mIHdob2xlIG1pbGs/IiwgIm9wdGlvbnMiOiBbIkEiLCAiQiIsICJDIiwgIkQiXSwgImFuc3dlciI6IDB9LCB7InF1ZXN0aW9uIjogIkhvdyBhcmUgYW1pbm8gYWNpZHMgYXR0YWNoZWQgdG8gb25lIGFub3RoZXI/IiwgIm9wdGlvbnMiOiBbIkEiLCAiQiIsICJDIiwgIkQiXSwgImFuc3dlciI6IDB9LCB7InF1ZXN0aW9uIjogIklmIHlvdSBhdGUgYSBUd2lua2llLCB3aGF0IGtpbmQgb2Ygc3VnYXIgd291bGQgeW91IGV4cGVjdCBpbiB5b3VyIGRpZ2VzdGl2ZSBzeXN0ZW0/IiwgIm9wdGlvbnMiOiBbIkEiLCAiQiIsICJDIiwgIkQiXSwgImFuc3dlciI6IDB9LCB7InF1ZXN0aW9uIjogIldoYXQgbWV0YWJvbGljIHByb2Nlc3MgaXMgbGlrZWx5IG9jY3VycmluZyB3aGVuIGRpZ2VzdGluZyBhIFR3aW5raWU/IiwgIm9wdGlvbnMiOiBbIkEiLCAiQiIsICJDIiwgIkQiXSwgImFuc3dlciI6IDB9LCB7InF1ZXN0aW9uIjogIldoYXQgd291bGQgaGFwcGVuIHRvIGEgcHJvdGVpbiBkdWUgdG8gdGhlIGFjaWRpYyBuYXR1cmUgb2YgeW91ciBzdG9tYWNoPyIsICJvcHRpb25zIjogWyJBIiwgIkIiLCAiQyIsICJEIl0sICJhbnN3ZXIiOiAwfV0=
+</script>
+<script>
+function getEmbeddedQuestions(){
+  try {
+    const raw = document.getElementById('embedded-questions').textContent.trim();
+    const decoded = atob(raw);
+    return JSON.parse(decoded);
+  } catch(e) {
+    console.error("Failed to parse embedded base64 questions", e);
+    return [];
+  }
+}
+
+async function loadDefaultQuestions(){
+  try{
+    const res = await fetch('questions.json?v=' + Date.now());
+    if(!res.ok) throw new Error('Network');
+    originalQuestions = await res.json();
+    showToast("✅ Loaded questions.json successfully");
+    console.log("✅ Loaded questions.json");
+  }catch(e){
+    console.warn("Failed to fetch questions.json, using embedded set.",e);
+    showToast("⚠️ Failed to load questions.json, using default questions.");
+    console.log("⚠️ Using embedded fallback questions");
+    originalQuestions = getEmbeddedQuestions();
+  }
+}
+
+// Add error handlers for media
+document.getElementById('bg-video').addEventListener('error',()=>{showToast("⚠️ Background video missing, disabled.");console.log("⚠️ Background video missing");document.getElementById('bg-video').remove();});
+document.getElementById('music-audio').addEventListener('error',()=>{showToast("⚠️ Music missing, disabled.");console.log("⚠️ Music missing");document.getElementById('music-toggle').disabled=true;});
+</script>
+<!-- Question Editor Modal (injected) -->
+<div id="question-editor-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:12000;align-items:center;justify-content:center;">
+  <div id="question-editor-modal" style="width:80%;height:80%;background:linear-gradient(180deg,rgba(8,8,12,0.98),rgba(14,14,20,0.98));border:2px solid rgba(255,213,74,0.9);border-radius:12px;overflow:hidden;transform:scale(0.92);opacity:0;transition:all 260ms ease;position:relative;">
+    <div style="position:sticky;top:0;z-index:10;background:rgba(8,8,12,0.95);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.03);">
+      <div style="font-weight:800;color:var(--gold,#ffd54a);font-size:1.05rem">Question Editor</div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <div style="position:relative;">
+          <input id="qe-search" placeholder="Search questions..." style="padding:8px 28px 8px 28px;border-radius:8px;border:1px solid rgba(255,213,74,0.18);background:#0b0b10;color:#fff;outline:none;width:320px;"/>
+          <span id="qe-clear" title="Clear" style="position:absolute;left:6px;top:50%;transform:translateY(-50%);cursor:pointer;color:rgba(255,213,74,0.95);font-weight:700;display:none;">✖</span>
+        </div>
+        <button id="qe-import" class="btn">Import</button>
+        <button id="qe-export" class="btn">Export</button>
+        <button id="qe-add" class="btn">Add</button>
+        <button id="qe-save" class="btn primary">Save</button>
+        <button id="qe-close" class="btn">Close</button>
+      </div>
+    </div>
+    <div id="qe-body" style="height:calc(100% - 64px);overflow:auto;padding:12px;">
+      <div id="qe-list" style="display:flex;flex-direction:column;gap:8px;"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Question Editor logic (injected)
+let qeWorkingSet = [];
+let qeUnsaved = false;
+
+function qeOpenModal(){
+  // show overlay and modal with zoom-in
+  const overlay = document.getElementById('question-editor-overlay');
+  const modal = document.getElementById('question-editor-modal');
+  overlay.style.display = 'flex';
+  setTimeout(()=>{ modal.style.transform='scale(1)'; modal.style.opacity='1'; }, 10);
+  // populate working set from active originalQuestions
+  try{
+    qeWorkingSet = JSON.parse(JSON.stringify(originalQuestions || []));
+  }catch(e){
+    qeWorkingSet = [];
+  }
+  qeUnsaved = false;
+  renderQEList();
+  document.getElementById('qe-search').value = '';
+  document.getElementById('qe-clear').style.display = 'none';
+}
+
+function qeCloseModal(force=false){
+  if(!force && qeUnsaved){
+    if(!confirm("You have unsaved changes. Discard them?")) return;
+  }
+  const overlay = document.getElementById('question-editor-overlay');
+  const modal = document.getElementById('question-editor-modal');
+  modal.style.opacity='0'; modal.style.transform='scale(0.92)';
+  setTimeout(()=>{ overlay.style.display='none'; }, 260);
+  qeUnsaved = false;
+}
+
+function renderQEList(){
+  const list = document.getElementById('qe-list');
+  list.innerHTML = '';
+  const q = document.getElementById('qe-search').value.trim().toLowerCase();
+  const re = q ? new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'ig') : null;
+  qeWorkingSet.forEach((item, idx) => {
+    // filter
+    if(re){
+      const inQ = (item.question || '').toLowerCase().includes(q);
+      const inOpts = (item.options || []).some(o => (o||'').toLowerCase().includes(q));
+      if(!inQ && !inOpts) return;
+    }
+    const card = document.createElement('div');
+    card.style.background = 'linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02))';
+    card.style.border = '1px solid rgba(255,255,255,0.03)';
+    card.style.padding = '10px'; card.style.borderRadius='8px';
+    // question input with highlight if re
+    let qHTML = item.question.replace(/"/g,'&quot;');
+    if(re){
+      qHTML = item.question.replace(re, m => '<span style="background:rgba(255,213,74,0.15); color:var(--gold,#ffd54a); font-weight:700;">'+m+'</span>');
+    }
+    const qDiv = document.createElement('div');
+    qDiv.innerHTML = '<div style="font-weight:700;margin-bottom:6px;">Q'+(idx+1)+'</div><input class="qe-q" data-i="'+idx+'" value="'+(item.question||'').replace(/"/g,'&quot;')+'" style="width:100%;padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.06);background:#0b0b10;color:#fff;">';
+    card.appendChild(qDiv);
+    // options
+    const optsDiv = document.createElement('div');
+    optsDiv.style.marginTop='8px';
+    (item.options || []).forEach((opt, oi) => {
+      const optRow = document.createElement('div');
+      optRow.style.display='flex'; optRow.style.gap='8px'; optRow.style.alignItems='center'; optRow.style.marginTop='6px';
+      const radio = document.createElement('input');
+      radio.type='radio'; radio.name='qe-correct-'+idx; radio.checked = (item.answer===oi);
+      radio.addEventListener('change', ()=>{ qeSetAnswer(idx, oi); });
+      const input = document.createElement('input');
+      input.type='text'; input.value = opt || ''; input.style.flex='1'; input.style.padding='6px'; input.style.borderRadius='6px'; input.style.background='#0b0b10'; input.style.color='#fff'; input.style.border='1px solid rgba(255,255,255,0.04)';
+      input.addEventListener('change', ()=>{ qeUpdateOption(idx, oi, input.value); });
+      // highlight matched text in option if re
+      if(re && opt){
+        input.value = opt.replace(re, m => '%%HIGHLIGHT%%'+m+'%%HIGHLIGHT%%');
+      }
+      optRow.appendChild(radio); optRow.appendChild(input);
+      optsDiv.appendChild(optRow);
+    });
+    card.appendChild(optsDiv);
+    // actions
+    const actions = document.createElement('div');
+    actions.style.marginTop='8px'; actions.style.display='flex'; actions.style.justifyContent='flex-end'; actions.style.gap='8px';
+    const del = document.createElement('button'); del.textContent='Delete'; del.className='btn'; del.addEventListener('click', ()=>{ if(confirm("Delete this question?")){ qeDelete(idx); } });
+    const expand = document.createElement('button'); expand.textContent='Expand'; expand.className='btn'; expand.addEventListener('click', ()=>{ /* focus question input */ const el = card.querySelector('.qe-q'); if(el) el.focus(); });
+    actions.appendChild(expand); actions.appendChild(del);
+    card.appendChild(actions);
+    list.appendChild(card);
+  });
+  // re-attach listeners for question text inputs
+  document.querySelectorAll('.qe-q').forEach(inp => {
+    inp.addEventListener('change', (e)=>{ const i = parseInt(inp.getAttribute('data-i')); qeUpdateQuestion(i, inp.value); });
+  });
+}
+
+function qeUpdateQuestion(i, val){
+  qeWorkingSet[i].question = val;
+  qeUnsaved = true;
+}
+
+function qeUpdateOption(i, j, val){
+  if(!qeWorkingSet[i].options) qeWorkingSet[i].options = [];
+  qeWorkingSet[i].options[j] = val;
+  qeUnsaved = true;
+}
+
+function qeSetAnswer(i, j){
+  if(!qeWorkingSet[i]) return;
+  qeWorkingSet[i].answer = j;
+  qeUnsaved = true;
+}
+
+function qeDelete(i){
+  qeWorkingSet.splice(i,1);
+  renderQEList();
+  qeUnsaved = true;
+}
+
+function qeAdd(){
+  qeWorkingSet.push({question:"New question", options:["Option 1","Option 2","Option 3","Option 4"], answer:0});
+  renderQEList();
+  qeUnsaved = true;
+}
+
+function qeImportFile(){
+  const inp = document.createElement('input'); inp.type='file'; inp.accept='.json';
+  inp.onchange = async (e) => {
+    const f = e.target.files[0]; if(!f) return;
+    const txt = await f.text();
+    try{
+      const parsed = JSON.parse(txt);
+      if(Array.isArray(parsed)){
+        qeWorkingSet = parsed;
+        qeUnsaved = true;
+        renderQEList();
+        alert("Imported questions.");
+      } else alert("Invalid format: expected an array of questions.");
+    }catch(err){ alert("Failed to parse JSON."); }
+  };
+  inp.click();
+}
+
+function qeExportFile(){
+  const blob = new Blob([JSON.stringify(qeWorkingSet,null,2)], {type:'application/json'});
+  const a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='questions.json'; a.click();
+}
+
+function qeSaveChanges(){
+  // update global originalQuestions and signal saved
+  originalQuestions = JSON.parse(JSON.stringify(qeWorkingSet));
+  // trigger download Save As default questions.json
+  const blob = new Blob([JSON.stringify(originalQuestions,null,2)], {type:'application/json'});
+  const a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='questions.json'; a.click();
+  qeUnsaved = false;
+  alert("Questions saved and downloaded (default name: questions.json).");
+}
+
+// wire UI elements
+document.addEventListener('click', (e)=>{
+  if(e.target && e.target.id === 'open-question-editor') { qeOpenModal(); }
+  if(e.target && e.target.id === 'qe-close') { qeCloseModal(); }
+  if(e.target && e.target.id === 'qe-save') { qeSaveChanges(); }
+  if(e.target && e.target.id === 'qe-add') { qeAdd(); }
+  if(e.target && e.target.id === 'qe-import') { qeImportFile(); }
+  if(e.target && e.target.id === 'qe-export') { qeExportFile(); }
+});
+
+// search handlers
+document.addEventListener('input', (e)=>{
+  if(e.target && e.target.id === 'qe-search'){
+    const val = e.target.value || '';
+    document.getElementById('qe-clear').style.display = val ? 'inline' : 'none';
+    renderQEList(val);
+  }
+});
+document.addEventListener('click', (e)=>{
+  if(e.target && e.target.id === 'qe-clear'){
+    document.getElementById('qe-search').value = '';
+    document.getElementById('qe-clear').style.display = 'none';
+    renderQEList('');
+  }
+});
+
+// close modal on overlay click (outside modal)
+document.addEventListener('click', (e)=>{
+  const overlay = document.getElementById('question-editor-overlay');
+  const modal = document.getElementById('question-editor-modal');
+  if(!overlay || !modal) return;
+  if(e.target === overlay){ qeCloseModal(); }
+});
+</script>
+
+
+</body>
+</html>
